@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+  <title>My Calculator</title>
+</head>
+<body>
+  <script>
+    // initialize loop
+    loop = "Y";
+
+    // execute while the loop value is "Y"
+    while (loop.toUpperCase() === "Y") {
+      
+      invalidInput = true; // Initialized as true to execute number and operation prompts
+
+      // prompts user for numbers and operations
+      while (invalidInput == true) {
+        invalidInput = false; // set to false to spot invalid inputs
+
+        // Ask for the first number
+        num1 = window.prompt("Enter first number", ""); 
+
+        // Validate user input for num1
+        if (isNaN(num1)) {
+          window.alert("Enter a valid number"); 
+          invalidInput = true; // set to true
+          continue; // restarts loop for numbers and operation prompt
+        }
+
+        num1 = parseFloat(num1); //parse to float if num1 is valid
+
+        // Ask for the second number
+        num2 = window.prompt("Enter second number", "");
+
+        // Validate user input for num2
+        if (isNaN(num2)) {
+          window.alert("Enter a valid number");
+          invalidInput = true; // set to true
+          continue; // restarts loop for numbers and operation prompt
+        }
+
+        num2 = parseFloat(num2); //parse to float if num2 is valid
+
+        // Ask for the Operation
+        operation = window.prompt("Select an operation:  + for Addition , - for Subtraction , * for Multiplication , / for Division", "");
+
+        // Validate input for operation
+        if (operation != "+" && operation != "-" && operation != "*" && operation != "/") {
+          window.alert("Enter a valid operation");
+          invalidInput = true; // set to true
+          continue; // restarts loop for numbers and operation prompt
+        }
+      }
+
+      // Proceeds with the process if there are no invalid inputs
+
+      // Perform calculations depending on the operation chosen
+      switch (operation) {
+        case "+":
+          result = num1 + num2;
+          window.alert("Result: " + result);
+          break;
+        case "-":
+          result = num1 - num2;
+          window.alert("Result: " + result);
+          break;
+        case "*":
+          result = num1 * num2;
+          window.alert("Result: " + result);
+          break;
+        case "/":
+          // Handle case when divisor is 0
+          if (num2 === 0) {
+            window.alert("Division by zero is not allowed.");
+          } else {
+            result = num1 / num2;
+            window.alert("Result: " + result);
+          }
+          break;
+      }
+
+      // Asks if the user wants to try again, reassigns loop value.
+      loop = window.prompt("Do you want to try again? Y/N", "");
+      // Handle case when the user input is not Y nor N (case-insensitive)
+      while (loop.toUpperCase() !== "Y" && loop.toUpperCase() !== "N") {
+        loop = window.prompt("Invalid answer. Do you want to try again? Y/N", "");
+      }
+    }
+
+    window.alert("Goodbye!"); // terminates program if user inputs N (case-insensitive)
+    document.write("Program Terminated!"); 
+  </script>
+</body>
+</html>
